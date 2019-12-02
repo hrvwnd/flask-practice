@@ -32,3 +32,10 @@ def post():
         print(form.errors)
     
     return render_template('post.html', title='Post', form=form)
+
+@app.route('/register',methods=['GET','POST'])
+def register():
+    form=RegistrationForm()
+    if form.validate_on_submit():
+    hashed_pw = bcrypt.generate_password_hash(form.password.data.decode('utf-8'))
+    
