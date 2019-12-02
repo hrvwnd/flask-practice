@@ -11,9 +11,11 @@ def home():
     postData = Posts.query.all() 
     return render_template('home.html', title='Home', posts=postData)
     
+
 @app.route('/about')
 def about():
     return render_template('about.html', title='About')
+
 
 @app.route('/post', methods=['GET','POST'])
 @login_required
@@ -36,6 +38,7 @@ def post():
     
     return render_template('post.html', title='Post', form=form)
 
+
 @app.route('/register',methods=['GET','POST'])
 def register():
     form=RegistrationForm()
@@ -47,20 +50,28 @@ def register():
         return redirect(url_for('post'))
     return render_template('register.html',title='Register',form=form)
 
+
 @app.route("/login", methods = ['GET','POST'])
 def login():
+    
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
+    
     if form.validate_on_submit():
         user = Users.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password(user.password, form.password.data):
+        
+        if user and bcrypt.check_password_hash(user.password,
+         form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
+            
             if next_page:
                 return redirect(next_page)
             else: 
-                return redirect(url_for('home'))
+            
+            return redirect(url_for('home'))
+    
     return render_template('login.html', title='login',form=form)
 
 @app.route("/logout")
