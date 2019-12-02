@@ -35,7 +35,7 @@ class PostForm(FlaskForm):
     submit = SubmitField('Post Content')
 
 
-class ReistrationForm(FlaskForm):
+class RegistrationForm(FlaskForm):
     email = StringField('Email',
     validators=[
         DataRequired(),
