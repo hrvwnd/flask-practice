@@ -60,9 +60,6 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError('Email is already in use!')
 
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
-
 class LoginForm(FlaskForm):
     email = StringField('Email',
     validators = [
