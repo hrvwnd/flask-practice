@@ -24,10 +24,9 @@ def post():
     if form.validate_on_submit():
         postData = Posts(
                 title = form.title.data,
-                content = form.content.data
+                content = form.content.data,
                 author = current_user
         )
-        
         db.session.add(postData)
         db.session.commit()
     
