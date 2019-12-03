@@ -23,7 +23,7 @@ class Posts(db.Model):
     title = db.Column(db.String(100), nullable=False, unique=True)
     content = db.Column(db.String(100), nullable=False, unique=True)
     date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
-    user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     def __repr__(self):
         return ''.join([
             'User_ID: ', self.first_name, ' ', self.last_name, '\r\n',
