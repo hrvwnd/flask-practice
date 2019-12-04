@@ -55,5 +55,5 @@ class Tracks(db.Model):
     filename = db.Column(db.String(100), nullable = False, unique = True)
     album = db.Column(db.String(100), nullable = False)
     artist_id = db.column(db.Integer,db.ForeignKey('artists.id)'))
-    genre_id = b.column(db.Integer,db.ForeignKey('genre.id'))
+    genre_id = db.column(db.Integer,db.ForeignKey('genre.id'))
 
