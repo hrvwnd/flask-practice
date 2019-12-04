@@ -44,3 +44,20 @@ class TestBase(TestCase):
 
         db.session.remove()
         db.drop_all()
+
+class FlaskTests(TestBase):
+
+    def test_user_view(self):
+        """Tests the user page is inaccessable without logging in and that it re-directs 
+        to login page """
+        target_url = url_for("account",user_id=2)
+        redirect_url = url_for("login", next = target_url)
+        response = self.client.get(target_url)
+        self.assertEqual(response.status_code,302)
+        self.assertRedirects(response,redirect_url)
+    
+
+    def test_login_view(self):
+        """ Tests login page is accessable when not logged in """
+        response = self.client.get(url_for('login'))
+        self.assertEqual(response.status_code, 200)
