@@ -38,7 +38,7 @@ def load_user(id):
 
 
 #project tables start 
-    
+"""
 class Artists(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, unique = True)
     name = db.Column(db.String(100), nullable=False, unique= True)
@@ -57,3 +57,4 @@ class Tracks(db.Model):
     artist_id = db.Column(db.Integer,db.ForeignKey('artists.id)'))
     genre_id = db.Column(db.Integer,db.ForeignKey('genre.id'))
 
+"""

@@ -4,7 +4,7 @@ from flask import abort, url_for
 from flask_testing import TestCase
 from os import getenv
 from application import app, db
-from application.models import Users, Ticket
+from application.models import Users, Posts
 
 
 class TestBase(TestCase):
