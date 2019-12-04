@@ -34,3 +34,26 @@ class Posts(db.Model):
 @login_manager.user_loader
 def load_user(id):
     return Users.query.get(int(id))
+
+
+
+#project tables start 
+    
+class Artists(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True, unique = True)
+    name = db.Column(db.String(100), nullable=False, unique= True)
+    default_genre = db.Column(db.String(100),nullable = False, unique= True)
+
+class Genres(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True, unique = True)
+    name = db.Column(db.String(100), nullable = False, unique = True)
+    folder_path = db.Column(db.String(100), nullable = False, unique = True)
+
+class Tracks(db.Model):
+    id = db.Column(db.Integer, primary_key=True, unique = True)
+    title = db.Column(db.String(100), nullable = False)
+    filename = db.Column(db.String(100), nullable = False, unique = True)
+    album = db.Column(db.String(100), nullable = False)
+    artist_id = db.column(db.Integer,db.ForeignKey('artists.id)'))
+    genre_id = b.column(db.Integer,db.ForeignKey('genre.id'))
+
