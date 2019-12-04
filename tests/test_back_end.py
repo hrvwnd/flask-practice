@@ -70,7 +70,7 @@ class FlaskTests(TestBase):
 
     def test_posts_model(self):
         """tests creating a post"""
-        post = Posts(title="test",content = "testing this application", date_posted = datetime.utcnow, users_id = 1)
+        post = Posts(title="test",content = "testing this application", date_posted = datetime.utcnow, user_id = 1)
         db.session.add(post)
         db.sesssion.commit()
         self.assertEqual(Posts.query.count(),1)
