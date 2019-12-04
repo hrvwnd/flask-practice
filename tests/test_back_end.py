@@ -4,7 +4,7 @@ from flask import abort, url_for
 from flask_testing import TestCase
 from os import getenv
 from application import app, db
-from application.models import Users, Posts
+from application.models import Users, Posts, datetime
 
 
 class TestBase(TestCase):
@@ -61,3 +61,16 @@ class FlaskTests(TestBase):
         """ Tests login page is accessable when not logged in """
         response = self.client.get(url_for('login'))
         self.assertEqual(response.status_code, 200)
+    
+
+    def test_home_view(self):
+        """ Tests whether home page is accessable """
+        response = self.client.get(url_for("home"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_posts_model(self):
+        """tests creating a post"""
+        post = Posts(title="test",content = "testing this application", date_posted = datetime.utcnow), user_id = "2")
+        db.session.add(post)
+        db.sesssion.commit()
+        self.assertEqual(TIcket.query.count(),1)
