@@ -14,7 +14,7 @@ class TestBase(TestCase):
         # pass in test configurations
         config_name = 'testing'
         app.config.update(
-            SQLALCHEMY_DATABASE_URI='mysql+pymysql://'+str(getenv('MYSQL_USER'))+':'+str(getenv('MYSQL_PASS'))+'@'+str(getenv('MYSQL_URL'))+'/'+str(getenv('MYSQL_DB_TEST'))        )
+            SQLALCHEMY_DATABASE_URI='mysql+pymysql://'+str(getenv('MYSQL_USER'))+':'+str(getenv('MYSQL_PASSWORD'))+'@'+str(getenv('MYSQL_HOST'))+'/'+str(getenv('MYSQL_DB_TEST'))        )
         return app
 
     def setUp(self):
@@ -46,15 +46,15 @@ class TestBase(TestCase):
         db.drop_all()
 
 class FlaskTests(TestBase):
-#
- #   def test_user_view(self):
-  #      """Tests the user page is inaccessable without logging in and that it re-directs 
-   #     to login page """
-    #    target_url = url_for("account",user_id=2)
-     #   redirect_url = url_for("login", next = target_url)
-      #  response = self.client.get(target_url)
-       # self.assertEqual(response.status_code,302)
-        #self.assertRedirects(response,redirect_url)
+
+    def test_user_view(self):
+        """Tests the user page is inaccessable without logging in and that it re-directs 
+        to login page """
+        target_url = url_for("account",user_id=2)
+        redirect_url = url_for("login", next = target_url)
+        response = self.client.get(target_url)
+        self.assertEqual(response.status_code,302)
+        self.assertRedirects(response,redirect_url)
 
 
     def test_login_view(self):
