@@ -28,11 +28,13 @@ def post():
         f.save(os.path.join(
             app.instance_path, '/tmp/photos', filename
         ))
+        print (f)
         image_url = s3upload_file(f)
         postData = Posts(
                 title = form.title.data,
                 content = form.content.data,
                 author = current_user,
+                image_name = form.submit.data
                 image_url = image_url
 
         )
