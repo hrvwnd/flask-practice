@@ -31,7 +31,7 @@ class PostForm(FlaskForm):
             ]
     )
 
-    upload = FileField('image', validators=[
+    photo = FileField('image', validators=[
         FileRequired(),
         FileAllowed(images, 'Images only!')
         ]
