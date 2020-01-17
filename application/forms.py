@@ -15,7 +15,8 @@ class UploadForm(FlaskForm):
         FileAllowed(images, 'Images only!')
     ])
 '''
-
+# fix MEEEE
+# https://flask-wtf.readthedocs.io/en/stable/form.html
 class PostForm(FlaskForm):
     title = StringField('Title',
             validators = [
