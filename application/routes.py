@@ -30,6 +30,7 @@ def post():
         f.save(os.path.join(
             app.instance_path, '/tmp/photos', filename
         ))
+        print ("ffffffffffffffffffffffffffffffffffffffff")
         print (f)
         #image_url = s3upload_file(f)
         postData = Posts(
