@@ -1,9 +1,20 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, PasswordField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo,ValidationError
+from flask_uploads import UploadSet, IMAGES
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from application.models import Users
 from application.__init__ import LoginManager
 from flask_login import LoginManager, current_user
+
+images = UploadSet('images', IMAGES)
+'''
+class UploadForm(FlaskForm):
+    upload = FileField('image', validators=[
+        FileRequired(),
+        FileAllowed(images, 'Images only!')
+    ])
+'''
 
 class PostForm(FlaskForm):
     title = StringField('Title',
@@ -19,6 +30,12 @@ class PostForm(FlaskForm):
                 Length(min=4, max=100)
             ]
     )
+
+    upload = FileField('image', validators=[
+        FileRequired(),
+        FileAllowed(images, 'Images only!')
+        ]
+    )    
 
     submit = SubmitField('  Post Content  ')
 

@@ -3,7 +3,8 @@ from application import app, db, bcrypt
 from application.models import Posts, Users
 from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccountForm
 from flask_login import login_user,current_user, logout_user, login_required
-
+from application.functions import s3download_file, s3upload_file
+import os 
 
 @app.route('/')
 @app.route('/home')
@@ -22,10 +23,18 @@ def about():
 def post():
     form = PostForm()
     if form.validate_on_submit():
+        f = form.photo.data
+        filename = secure_filename(f.filename)
+        f.save(os.path.join(
+            app.instance_path, '/tmp/photos', filename
+        ))
+        image_url = s3upload_file(f)
         postData = Posts(
                 title = form.title.data,
                 content = form.content.data,
-                author = current_user
+                author = current_user,
+                image_url = image_url
+
         )
         db.session.add(postData)
         db.session.commit()

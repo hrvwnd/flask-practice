@@ -23,6 +23,8 @@ class Posts(db.Model):
     title = db.Column(db.String(100), nullable=False, unique=True)
     content = db.Column(db.String(100), nullable=False, unique=True)
     date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    image = db.Column(db.String(100), nullable = False, unique = False)
+    imageurl = db.Column(db.String(200), nullable = False, unique = True)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     def __repr__(self):
         return ''.join([
