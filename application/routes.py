@@ -30,7 +30,7 @@ def post():
         f.save(os.path.join(
             app.instance_path, '/tmp/photos', filename
         ))
-        print (f)from werkzeug.utils import secure_filename
+        print (f)
         #image_url = s3upload_file(f)
         postData = Posts(
                 title = form.title.data,
