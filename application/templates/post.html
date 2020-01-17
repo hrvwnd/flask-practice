@@ -3,13 +3,15 @@
 {% extends 'layout.html' %}
 {% block body_content %}
 	<div class="form">
-		<form method="POST" action="">
+		<form method="POST" action="" enctype="multipart/form-data">
 			{{ form.hidden_tag() }}
 			{{ form.title.label }}
 			{{ form.title }}
 			<br>
 			{{ form.content.label }}
 			{{ form.content }}
+			{{ form.upload.label}}
+			{{ form.upload }}
 			<br>
 			{{ form.submit }}
 		</form>
