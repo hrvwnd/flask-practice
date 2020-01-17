@@ -34,7 +34,7 @@ def post():
                 title = form.title.data,
                 content = form.content.data,
                 author = current_user,
-                image_name = form.submit.data
+                image_name = form.submit.data,
                 image_url = image_url
 
         )
