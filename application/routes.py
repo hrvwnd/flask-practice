@@ -4,6 +4,8 @@ from application.models import Posts, Users
 from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccountForm
 from flask_login import login_user,current_user, logout_user, login_required
 from application.functions import s3download_file, s3upload_file
+from werkzeug.utils import secure_filename
+from flask_wtf.file import FileField, FileRequired
 import os 
 
 @app.route('/')
@@ -28,7 +30,7 @@ def post():
         f.save(os.path.join(
             app.instance_path, '/tmp/photos', filename
         ))
-        print (f)
+        print (f)from werkzeug.utils import secure_filename
         #image_url = s3upload_file(f)
         postData = Posts(
                 title = form.title.data,
