@@ -9,6 +9,7 @@ app.config['SQLALCHEMY_DATABASE_URI']=('mysql+pymysql://' + getenv('MYSQL_USER')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = getenv('SECRET_KEY')
 #app.config['SECRET_KEY'] = '43riu34jhferugfhrf83h98eh3fuwhergiurhe'
+app.config["UPLOAD_FOLDER"]="/tmp/photos"
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
