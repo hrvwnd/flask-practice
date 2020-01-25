@@ -8,14 +8,6 @@ from application.__init__ import LoginManager
 from flask_login import LoginManager, current_user
 
 images = UploadSet('images', IMAGES)
-'''
-class UploadForm(FlaskForm):
-    upload = FileField('image', validators=[
-        FileRequired(),
-        FileAllowed(images, 'Images only!')
-    ])
-'''
-# fix MEEEE
 # https://flask-wtf.readthedocs.io/en/stable/form.html
 class PostForm(FlaskForm):
     title = StringField('Title',
@@ -37,7 +29,9 @@ class PostForm(FlaskForm):
         FileAllowed(images, 'Images only!')
         ]
     )    
-
+    #    FileAllowed(['jpg', 'png'], 'Images only!')
+    #    ]
+    #)
     submit = SubmitField('  Post Content  ')
 
 

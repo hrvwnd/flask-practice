@@ -11,6 +11,7 @@ import os
 @app.route('/')
 @app.route('/home')
 def home():
+
     postData = Posts.query.all() 
     return render_template('home.html', title='Home', posts=postData)
     
@@ -26,25 +27,26 @@ def post():
     form = PostForm()
     if form.validate_on_submit():
         f = form.photo.data
-        filename = secure_filename(f.filename)
-        f.save(os.path.join(
-            app.instance_path, '/tmp/photos', filename
-        ))
-        print ("ffffffffffffffffffffffffffffffffffffffff")
-        print (f)
-        #image_url = s3upload_file(f)
-        postData = Posts(
-                title = form.title.data,
-                content = form.content.data,
-                author = current_user,
-                image_name = form.submit.data#,
-                #image_url = image_url
+        save_photo = save_photo(f)
+        if save_photo:
+            print ("ffffffffffffffffffffffffffffffffffffffff")
+            print (f)
+            image_name = f
 
-        )
-        db.session.add(postData)
-        db.session.commit()
-    
-        return redirect(url_for('home'))
+            postData = Posts(
+                    title = form.title.data,
+                    content = form.content.data,
+                    author = current_user,
+                    image_name = image_name
+                    #image_url = image_url
+
+            )
+            db.session.add(postData)
+            db.session.commit()
+        
+            return redirect(url_for('home'))
+        else:
+            print ("Photo could not save")
     else:
         print(form.errors)
     
