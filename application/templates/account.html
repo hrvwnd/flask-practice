@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 
+<!DOCTYPE html>
+
 {% extends 'layout.html' %}
 {% block body_content %}
 <h1>Register Page</h1>
 <p>Need an account? Sign up!</p>
 <div class="form">
+    <h1>{{ current_user.first_name }} {{ current_user.last_name }} Account Page</h1>
     <form method="POST" action="">
         {{ form.hidden_tag() }}
         <div class="form-group">
@@ -48,41 +51,11 @@
             {{ form.last_name }}
             {% endif %}
         </div>
-
-        <br>
-        <div class="form-group">
-            {{ form.password.label }}
-            {% if form.password.errors %}
-            {{ form.password }}
-            <div class="error">
-                {% for error in form.password.errors %}
-                <span>{{ error }} </span>
-                {% endfor %}
-            </div>
-            {% else %}
-            {{ form.password }}
-            {% endif %}
-        </div>
-
-        <br>
-        <div class="form-group">
-            {{ form.confirm_password.label }}
-            {% if form.confirm_password.errors %}
-            {{ form.confirm_password }}
-            <div class="error">
-                {% for error in form.confirm_password.errors %}
-                <span>{{ error }} </span>
-                {% endfor %}
-            </div>
-            {% else %}
-            {{ form.confirm_password }}
-            {% endif %}
-        </div>
         
         <br>
         <div class="form-group">
             {{ form.submit }}
-        </div>
+        </div>>
 </form>
 </div>
 {% endblock body_content %}
